@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema({
   name: String,
-  photo: String
+  photo: String,
+  armies: [{type: mongoose.Schema.Types.ObjectId, ref: "Army"}]
 },{
   timestamps: true,
 })
