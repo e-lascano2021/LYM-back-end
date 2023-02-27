@@ -46,12 +46,32 @@ function update (req, res) {
   })
 }
 
-
+function updatePoints (req, res) {
+  Army.findById(req.params.id)
+  .then(army => {
+    if(army.currentPoints + req.body.currentPoints > army.totalPoints) {
+      army.totalPoints = army.currentPoints+ req.body.currentPoints
+    }
+    if (army.currentPoints + req.body.currentPoints < 0) {
+      army.currentPoints = 0
+    } else {
+      army.currentPoints += req.body.currentPoints
+    }
+    
+    army.save()
+    return res.status(201).json(army)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
 
 
 
 export {
   index,
   create,
-  update
+  update,
+  updatePoints,
 }
