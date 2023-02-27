@@ -29,11 +29,22 @@ function addPhoto(req, res) {
   })
 }
 
-
+function show (req, res) {
+  console.log(req.user.profile)
+  Profile.findById(req.user.profile)
+  .then(myProfile => {
+    res.json(myProfile)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
 
 
 
 export { 
   index, 
   addPhoto,
+  show 
 }
