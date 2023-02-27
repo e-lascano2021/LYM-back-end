@@ -12,6 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, armiesCtrl.index)
 router.post('/', checkAuth, armiesCtrl.create)
 router.put('/:id', checkAuth, armiesCtrl.update)
+router.patch('/points/:id', checkAuth, armiesCtrl.updatePoints)
 
 
 export { router }
