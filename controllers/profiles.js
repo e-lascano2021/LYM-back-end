@@ -41,10 +41,27 @@ function show (req, res) {
   })
 }
 
+function update (req,res) {
+  req.body.loveTypes = req.body.loveTypes?.map(el => {return el.value})
+  req.body.loveLanguages = req.body.loveLanguages?.map(el => {return el.value})
+  Profile.findById(req.user.profile)
+  .then( myProfile => {
+    myProfile.loveTypes = req.body.loveTypes
+    myProfile.loveLanguages = req.body.loveLanguages
+    myProfile.save()
+    res.json(myProfile)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 
 
 export { 
   index, 
   addPhoto,
-  show 
+  show,
+  update
 }
