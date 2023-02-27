@@ -33,11 +33,25 @@ function create (req, res) {
   })
 }
 
+function update (req, res) {
+  req.body.loveTypes = req.body.loveTypes?.map(el => {return el.value})
+  req.body.loveLanguages = req.body.loveLanguages?.map(el => {return el.value})
+  Army.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(updatedArmy => {
+    res.json(updatedArmy)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 
 
 
 
 export {
   index,
-  create
+  create,
+  update
 }
