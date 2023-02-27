@@ -29,4 +29,11 @@ function addPhoto(req, res) {
   })
 }
 
-export { index, addPhoto }
+
+
+
+
+export { 
+  index, 
+  addPhoto,
+}
