@@ -26,10 +26,10 @@ function create (req, res) {
       myProfile.save()
       res.json(army)
     })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({err: err.errmsg})
+    })
   })
 }
 

@@ -21,10 +21,10 @@ function addPhoto(req, res) {
       .then(profile => {
         res.status(201).json(profile.photo)
       })
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json(err)
+      .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+      })
     })
   })
 }
