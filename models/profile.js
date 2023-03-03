@@ -14,6 +14,7 @@ const profileSchema = new Schema({
     type: String,
     enum: ["Words of Affirmation", "Acts of Service", "Receiving Gifts", "Quality Time", "Physical Touch"],
   }],
+  plans:[{type: mongoose.Schema.Types.ObjectId, ref: "Plan"}]
 },{
   timestamps: true,
 })
