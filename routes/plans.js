@@ -9,7 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/', checkAuth, plansCtrl.index)
+router.post('/:id', checkAuth, plansCtrl.create)
 
 
 

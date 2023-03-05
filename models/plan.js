@@ -19,7 +19,7 @@ const planSchema = new Schema({
 
   },
   who: {
-    type: mongoose.Schema.Types.ObjectId, ref: "LoveArmy"
+    type: mongoose.Schema.Types.ObjectId, ref: "Army"
   }
   
 },{
