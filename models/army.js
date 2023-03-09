@@ -19,7 +19,6 @@ const armySchema = new Schema({
   }],
   image: {
     type: String,
-    required: false,
   },
   totalPoints: {
     type: Number,

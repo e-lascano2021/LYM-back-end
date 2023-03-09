@@ -1,3 +1,4 @@
+import { v2 as cloudinary } from 'cloudinary'
 import {Army} from "../models/army.js"
 import {Profile} from "../models/profile.js"
 
@@ -67,6 +68,25 @@ function updatePoints (req, res) {
   })
 }
 
+function addPhoto(req, res) {
+  const imageFile = req.files.photo.path
+  Army.findById(req.params.id)
+  .then(army => {
+    cloudinary.uploader.upload(imageFile, {tags: `${req.user.email}`})
+    .then(image => {
+      army.image = image.url
+      army.save()
+      .then(army => {
+        res.status(201).json(army)
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+      })
+    })
+  })
+}
+
 
 
 export {
@@ -74,4 +94,5 @@ export {
   create,
   update,
   updatePoints,
+  addPhoto
 }

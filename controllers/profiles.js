@@ -30,13 +30,11 @@ function addPhoto(req, res) {
 }
 
 function show (req, res) {
-  console.log(req.user.profile)
   Profile.findById(req.user.profile)
   .populate({
       path: 'plans',
       populate: { path: 'who', select: "name image"}
     })
-  // .populate("plans")
   .then(myProfile => {
     res.json(myProfile)
   })
