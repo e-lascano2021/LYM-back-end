@@ -10,6 +10,7 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, armiesCtrl.index)
+router.get('/:id', checkAuth, armiesCtrl.show)
 router.post('/', checkAuth, armiesCtrl.create)
 router.put('/:id', checkAuth, armiesCtrl.update)
 router.put('/:id/add-photo', checkAuth, armiesCtrl.addPhoto)

@@ -15,6 +15,25 @@ function index(req, res) {
   })
 }
 
+function show(req, res) {
+  Profile.findById(req.user.profile)
+  .populate("armies")
+  .then(myProfile => {
+    const soldier = myProfile.armies.find(soldier => soldier.equals(req.params.id))
+    if(soldier){
+      res.status(200).json(soldier)
+    } 
+    else {
+      res.status(500).json({err: 'You can only access an army that belongs to you'})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+
 
 function create (req, res) {
   req.body.loveTypes = req.body.loveTypes?.map(el => {return el.value})
@@ -91,6 +110,7 @@ function addPhoto(req, res) {
 
 export {
   index,
+  show,
   create,
   update,
   updatePoints,
