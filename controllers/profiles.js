@@ -1,15 +1,6 @@
 import { Profile } from '../models/profile.js'
 import { v2 as cloudinary } from 'cloudinary'
 
-function index(req, res) {
-  Profile.find({})
-  .then(profiles => res.json(profiles))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
-}
-
 function addPhoto(req, res) {
   const imageFile = req.files.photo.path
   Profile.findById(req.params.id)
@@ -63,7 +54,6 @@ function update (req,res) {
 
 
 export { 
-  index, 
   addPhoto,
   show,
   update
