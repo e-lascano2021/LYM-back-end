@@ -3,6 +3,8 @@ import { Profile } from '../models/profile.js'
 import jwt from 'jsonwebtoken'
 
 function signup(req, res) {
+  req.body.loveTypes = req.body.loveTypes?.map(el => {return el.value})
+  req.body.loveLanguages = req.body.loveLanguages?.map(el => {return el.value})
   User.findOne({ email: req.body.email })
   .then(user => {
     if (user) {

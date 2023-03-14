@@ -9,10 +9,12 @@ const profileSchema = new Schema({
   loveTypes: [{
     type: String,
     enum: ["Eros", "Philia", "Storge", "Agape", "Ludus", "Pragma", "Philautia", "Mania"],
+    required: true
   }],
   loveLanguages: [{
     type: String,
     enum: ["Words of Affirmation", "Acts of Service", "Receiving Gifts", "Quality Time", "Physical Touch"],
+    required: true
   }],
   plans:[{type: mongoose.Schema.Types.ObjectId, ref: "Plan"}]
 },{

@@ -7,7 +7,7 @@ function index(req, res) {
   Profile.findById(req.user.profile)
   .populate("armies")
   .then(myProfile => {
-    res.json(myProfile.armies)
+    res.status(200).json(myProfile.armies)
   })
   .catch(err => {
     console.log(err)
@@ -44,7 +44,7 @@ function create (req, res) {
     .then(army => {
       myProfile.armies.push(army)
       myProfile.save()
-      res.json(army)
+      res.status(200).json(army)
     })
     .catch(err => {
       console.log(err)
@@ -58,7 +58,7 @@ function update (req, res) {
   req.body.loveLanguages = req.body.loveLanguages?.map(el => {return el.value})
   Army.findByIdAndUpdate(req.params.id, req.body, {new: true})
   .then(updatedArmy => {
-    res.json(updatedArmy)
+    res.status(200).json(updatedArmy)
   })
   .catch(err => {
     console.log(err)
@@ -79,7 +79,7 @@ function updatePoints (req, res) {
     }
     
     army.save()
-    return res.status(201).json(army)
+    return res.status(200).json(army)
   })
   .catch(err => {
     console.log(err)
