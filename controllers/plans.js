@@ -8,13 +8,17 @@ import { Plan } from "../models/plan.js"
 function create (req, res) {
   Profile.findById(req.user.profile)
   .then(myProfile => {
-    Army.findById(req.params.id)
+    console.log("myProfile", myProfile)
+    Army.findById(req.params.armyId)
     .then(army => {
-      req.body.who = army
+      console.log("army", army)
+      req.body.who = army._id
+      console.log(req.body)
       Plan.create(req.body)
       .then(plan => {
-        army.plans.push(plan)
+        console.log("plan", plan)
         myProfile.plans.push(plan)
+        army.plans.push(plan)
         army.save()
         myProfile.save()
         return res.status(201).json(plan)

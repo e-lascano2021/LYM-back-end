@@ -15,13 +15,18 @@ function index(req, res) {
   })
 }
 
+
 function show(req, res) {
   Profile.findById(req.user.profile)
   .populate("armies")
   .then(myProfile => {
     const soldier = myProfile.armies.find(soldier => soldier.equals(req.params.id))
     if(soldier){
-      res.status(200).json(soldier)
+      Army.findById(req.params.id)
+      .populate("plans")
+      .then(army => {
+        res.status(200).json(army)
+      })
     } 
     else {
       res.status(500).json({err: 'You can only access an army that belongs to you'})

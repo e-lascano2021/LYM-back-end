@@ -9,7 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/:id', checkAuth, plansCtrl.create)
+router.post('/:armyId', checkAuth, plansCtrl.create)
 
 
 
