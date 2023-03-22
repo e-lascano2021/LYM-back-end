@@ -3,8 +3,6 @@ import { Profile } from "../models/profile.js"
 import { Plan } from "../models/plan.js"
 
 
-
-
 function create (req, res) {
   Profile.findById(req.user.profile)
   .then(myProfile => {
@@ -12,16 +10,20 @@ function create (req, res) {
     .then(army => {
       req.body.who = army._id
       Plan.create(req.body)
-      .then(plan => {
-        myProfile.plans.push(plan)
-        army.plans.push(plan)
-        army.save()
-        myProfile.save()
-        return res.status(201).json(plan)
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(500).json({err: err.errmsg})
+      .then(newPlan => {
+        Plan.findById(newPlan._id)
+        .populate("who")
+        .then(plan => {
+          myProfile.plans.push(plan)
+          army.plans.push(plan)
+          army.save()
+          myProfile.save()
+          return res.status(201).json(plan)
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(500).json({err: err.errmsg})
+        })
       })
     })
   })

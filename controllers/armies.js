@@ -23,7 +23,10 @@ function show(req, res) {
     const soldier = myProfile.armies.find(soldier => soldier.equals(req.params.id))
     if(soldier){
       Army.findById(req.params.id)
-      .populate("plans")
+      .populate({
+        path: "plans",
+        populate: {path: "who"}
+      })
       .then(army => {
         res.status(200).json(army)
       })
