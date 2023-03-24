@@ -50,8 +50,22 @@ function deletePlan (req, res) {
   })
 }
 
+function update (req, res) {
+  Plan.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .populate("who")
+  .then(plan => {
+    console.log(plan)
+    return res.status(201).json(plan)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 
 export {
   create,
   deletePlan as delete,
+  update
 }

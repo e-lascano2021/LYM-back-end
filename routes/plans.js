@@ -11,6 +11,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.post('/:armyId', checkAuth, plansCtrl.create)
 router.delete('/:id/:armyId', checkAuth, plansCtrl.delete)
+router.put('/:id', checkAuth, plansCtrl.update)
 
 
 
