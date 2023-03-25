@@ -42,12 +42,12 @@ const armySchema = new Schema({
     type: Number,
     default: 125,
   },
-  gifts: [{
+  gifts: [
     giftSchema
-  }],
-  // reminders: [{
+  ],
+  // reminders: [
   //   reminderSchema
-  // }],
+  // ],
   plans: [{type: mongoose.Schema.Types.ObjectId, ref: "Plan"}],
   status: {
     type: Boolean,

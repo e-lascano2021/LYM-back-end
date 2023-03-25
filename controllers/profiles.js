@@ -3,7 +3,7 @@ import { v2 as cloudinary } from 'cloudinary'
 
 function addPhoto(req, res) {
   const imageFile = req.files.photo.path
-  Profile.findById(req.params.id)
+  Profile.findById(req.user.profile)
   .then(profile => {
     cloudinary.uploader.upload(imageFile, {tags: `${req.user.email}`})
     .then(image => {

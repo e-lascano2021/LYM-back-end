@@ -9,8 +9,8 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
-router.get('/:id', checkAuth, profilesCtrl.show)
-router.patch('/love', checkAuth, profilesCtrl.update)
+router.put('/', checkAuth, profilesCtrl.update)
+router.put('/add-photo', checkAuth, profilesCtrl.addPhoto)
+router.get('/', checkAuth, profilesCtrl.show)
 
 export { router }

@@ -114,7 +114,23 @@ function addPhoto(req, res) {
   })
 }
 
+//* gifts controllers
 
+function createGift(req, res) {
+  Army.findById(req.params.id)
+  .populate("gifts")
+  .then(army => {
+    army.gifts.push(req.body)
+    army.save()
+    .then(() => {
+      res.status(201).json(army.gifts.findLast((element) => element))
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
 
 export {
   index,
@@ -122,5 +138,6 @@ export {
   create,
   update,
   updatePoints,
-  addPhoto
+  addPhoto,
+  createGift
 }
