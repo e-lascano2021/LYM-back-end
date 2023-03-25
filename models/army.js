@@ -2,6 +2,20 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const giftSchema = new Schema ({
+  item: {
+    type: String,
+    required: true
+  },
+  where: {
+    type: String,
+    required: true,
+  },
+  notes: {
+    type: String
+  }
+})
+
 const armySchema = new Schema({
   name: {
     type: String,
@@ -28,9 +42,9 @@ const armySchema = new Schema({
     type: Number,
     default: 125,
   },
-  // gifts: [{
-  //   giftSchema
-  // }],
+  gifts: [{
+    giftSchema
+  }],
   // reminders: [{
   //   reminderSchema
   // }],
