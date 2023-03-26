@@ -115,15 +115,28 @@ function addPhoto(req, res) {
 }
 
 //* gifts controllers
-
 function createGift(req, res) {
   Army.findById(req.params.id)
-  .populate("gifts")
   .then(army => {
     army.gifts.push(req.body)
     army.save()
     .then(() => {
       res.status(201).json(army.gifts.findLast((element) => element))
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
+function deleteGift(req, res){
+  Army.findById(req.params.id)
+  .then(army => {
+    army.gifts.remove({_id: req.params.giftId})
+    army.save()
+    .then(() => {
+      res.status(201).json(army.gifts)
     })
     .catch(err => {
       console.log(err)
@@ -139,5 +152,6 @@ export {
   update,
   updatePoints,
   addPhoto,
-  createGift
+  createGift,
+  deleteGift
 }
