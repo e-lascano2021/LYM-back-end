@@ -6,7 +6,6 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, armiesCtrl.index)
@@ -14,6 +13,7 @@ router.get('/:id', checkAuth, armiesCtrl.show)
 
 router.post('/', checkAuth, armiesCtrl.create)
 router.post('/:id/gifts', checkAuth, armiesCtrl.createGift)
+router.post('/:id/reminders', checkAuth, armiesCtrl.createReminder)
 
 router.put('/:id', checkAuth, armiesCtrl.update)
 router.put('/:id/add-photo', checkAuth, armiesCtrl.addPhoto)

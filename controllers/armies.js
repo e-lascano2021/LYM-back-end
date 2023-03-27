@@ -162,6 +162,23 @@ function updateGift(req, res){
   })
 }
 
+//* reminder controllers
+function createReminder(req, res) {
+  Army.findById(req.params.id)
+  .then(army => {
+    army.reminders.push(req.body)
+    army.save()
+    .then(() => {
+      res.status(201).json(army.reminders.findLast((element) => element))
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
+
 export {
   index,
   show,
@@ -171,5 +188,6 @@ export {
   addPhoto,
   createGift,
   deleteGift,
-  updateGift
+  updateGift,
+  createReminder
 }
