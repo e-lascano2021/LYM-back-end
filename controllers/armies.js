@@ -149,7 +149,7 @@ function updateGift(req, res){
   Army.findById(req.params.id)
   .then(army => {
     for(const key in req.body){
-      army.gifts.id(req.params.giftId)[key]= req.body[key]
+      army.gifts.id(req.params.giftId)[key] = req.body[key]
     }
     army.save()
     .then(() => {
@@ -193,6 +193,23 @@ function deleteReminder(req, res){
   })
 }
 
+function updateReminder(req, res){
+  Army.findById(req.params.id)
+  .then(army => {
+    for(const key in req.body){
+      army.reminders.id(req.params.reminderId)[key] = req.body[key]
+    }
+    army.save()
+    .then(() => {
+      res.status(201).json(army.reminders.id(req.params.reminderId))
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
 export {
   index,
   show,
@@ -204,5 +221,6 @@ export {
   deleteGift,
   updateGift,
   createReminder,
-  deleteReminder
+  deleteReminder,
+  updateReminder
 }
