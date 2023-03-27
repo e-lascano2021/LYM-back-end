@@ -54,7 +54,6 @@ function update (req, res) {
   Plan.findByIdAndUpdate(req.params.id, req.body, {new: true})
   .populate("who")
   .then(plan => {
-    console.log(plan)
     return res.status(201).json(plan)
   })
   .catch(err => {

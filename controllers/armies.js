@@ -145,6 +145,23 @@ function deleteGift(req, res){
   })
 }
 
+function updateGift(req, res){
+  Army.findById(req.params.id)
+  .then(army => {
+    for(const key in req.body){
+      army.gifts.id(req.params.giftId)[key]= req.body[key]
+    }
+    army.save()
+    .then(() => {
+      res.status(201).json(army.gifts.id(req.params.giftId))
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
 export {
   index,
   show,
@@ -153,5 +170,6 @@ export {
   updatePoints,
   addPhoto,
   createGift,
-  deleteGift
+  deleteGift,
+  updateGift
 }
