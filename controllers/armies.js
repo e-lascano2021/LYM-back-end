@@ -178,6 +178,20 @@ function createReminder(req, res) {
   })
 }
 
+function deleteReminder(req, res){
+  Army.findById(req.params.id)
+  .then(army => {
+    army.reminders.remove({_id: req.params.reminderId})
+    army.save()
+    .then(() => {
+      res.status(201).json(army.reminders)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
 
 export {
   index,
@@ -189,5 +203,6 @@ export {
   createGift,
   deleteGift,
   updateGift,
-  createReminder
+  createReminder,
+  deleteReminder
 }

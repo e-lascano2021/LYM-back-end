@@ -20,6 +20,7 @@ router.put('/:id/add-photo', checkAuth, armiesCtrl.addPhoto)
 router.put('/:id/gifts/:giftId', checkAuth, armiesCtrl.updateGift)
 
 router.delete('/:id/gifts/:giftId', checkAuth, armiesCtrl.deleteGift)
+router.delete('/:id/reminders/:reminderId', armiesCtrl.deleteReminder)
 
 router.patch('/points/:id', checkAuth, armiesCtrl.updatePoints)
 
