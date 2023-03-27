@@ -18,7 +18,6 @@ router.post('/:id/gifts', checkAuth, armiesCtrl.createGift)
 router.put('/:id', checkAuth, armiesCtrl.update)
 router.put('/:id/add-photo', checkAuth, armiesCtrl.addPhoto)
 router.put('/:id/gifts/:giftId', checkAuth, armiesCtrl.updateGift)
-// router.put('/:id/gifts/:giftId', checkAuth, armiesCtrl.updateGift)
 
 router.delete('/:id/gifts/:giftId', checkAuth, armiesCtrl.deleteGift)
 
