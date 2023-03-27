@@ -6,7 +6,6 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-router.delete('/:id/gifts/:giftId', armiesCtrl.deleteGift)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
@@ -19,6 +18,7 @@ router.post('/:id/gifts', checkAuth, armiesCtrl.createGift)
 router.put('/:id', checkAuth, armiesCtrl.update)
 router.put('/:id/add-photo', checkAuth, armiesCtrl.addPhoto)
 
+router.delete('/:id/gifts/:giftId', checkAuth, armiesCtrl.deleteGift)
 
 router.patch('/points/:id', checkAuth, armiesCtrl.updatePoints)
 
