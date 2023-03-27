@@ -16,6 +16,21 @@ const giftSchema = new Schema ({
   }
 })
 
+const reminderSchema = new Schema ({
+  text: {
+    type: String,
+  },
+  author: {
+    type: String,
+  },
+  link: {
+    type: String
+  },
+  notes: {
+    type: String
+  }
+})
+
 const armySchema = new Schema({
   name: {
     type: String,
@@ -45,9 +60,9 @@ const armySchema = new Schema({
   gifts: [
     giftSchema
   ],
-  // reminders: [
-  //   reminderSchema
-  // ],
+  reminders: [
+    reminderSchema
+  ],
   plans: [{type: mongoose.Schema.Types.ObjectId, ref: "Plan"}],
   status: {
     type: Boolean,
